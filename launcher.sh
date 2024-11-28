@@ -6,7 +6,7 @@ print_menu () {
     do
         echo $'\e[2A'
     done
-    echo $'\e[0J'
+    echo $'\e[0J\e[A'
     for name in "${shortcut_name[@]}";
     do
         if [ "${@: -1}" -eq $count ];
@@ -51,11 +51,12 @@ load_arr () {
 }
 
 main () {
+    echo $'\e[2J\e[HOptions:'
     pointer=0
     load_arr
-    for ((i = 0 ; i < $indiv_index ; i++)); do
-        echo
-    done
+    #for ((i = 0 ; i < $indiv_index ; i++)); do
+     #   echo
+    #done
     ((indiv_index=$indiv_index-1))
     print_menu $shortcut_name $pointer
     user_input=0
