@@ -51,22 +51,8 @@ load_arr () {
 }
 
 main () {
-    #shortcut_name[0]="Option 1"
-    #shortcut_name[1]="Option 2"
-    #shortcut_name[2]="Option 3"
-    #shortcut_name[3]="Option 4"
-    #shortcut_location[0]="$HOME"
-    #shortcut_location[1]="$HOME"
-    #shortcut_location[2]="$HOME"
-    #shortcut_location[3]="$HOME"
-    #shortcut_command[0]="echo 'one'"
-    #shortcut_command[1]="echo 'two'"
-    #shortcut_command[2]="echo 'three'"
-    #shortcut_command[3]="echo 'four'"
-    #load_arr
     pointer=0
     load_arr
-    echo $indiv_index
     ((indiv_index=$indiv_index-1))
     for ((i = 0 ; i < $indiv_index ; i++)); do
         echo
