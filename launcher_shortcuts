@@ -1,0 +1,20 @@
+# you can comment with #
+# each shortcut has to consist of three arguments
+# name, absolute path to lication where the command needs to run
+# command to run
+# you can leave empty lines in between the arguments
+# you can comment between the arguments
+option 1
+/
+#comment
+echo "you chose option 1"
+
+option 2
+/
+
+
+echo "you chose option 2"
+
+option 3
+/
+echo "you chose option 3"
