@@ -53,10 +53,10 @@ load_arr () {
 main () {
     pointer=0
     load_arr
-    ((indiv_index=$indiv_index-1))
     for ((i = 0 ; i < $indiv_index ; i++)); do
         echo
     done
+    ((indiv_index=$indiv_index-1))
     print_menu $shortcut_name $pointer
     user_input=0
     while [ $user_input != "q" ] && [ $user_input != "Q" ];
