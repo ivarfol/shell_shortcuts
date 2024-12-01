@@ -7,16 +7,26 @@ print_menu () {
         echo $'\e[2A'
     done
     echo $'\e[0J\e[A'
-    for name in "${shortcut_name[@]}";
-    do
-        if [ "${@: -1}" -eq $count ];
-        then
+    for name in "${shortcut_name[@]}"; do
+        if [ $pointer -eq $count ]; then
             echo $'\e[47m\e[30m' $name $'\e[0m'
         else
             echo $name
         fi
         ((count=count+1))
     done
+}
+
+help_f () {
+    echo $'\e[H\e[0JHelp'
+    echo "w, k to move up"
+    echo "s, j to move down"
+    echo "enter to run the command"
+    echo "h, ? to access this menu"
+    echo "q to quit"
+    echo "you can customise your menu"
+    echo "by changing ~/.shortcuts"
+    read -n1 -s
 }
 
 move_pointer () {
@@ -60,26 +70,27 @@ main () {
     load_arr
     echo $'\e[2J\e[H'$title
     ((indiv_index=$indiv_index-1))
-    print_menu $shortcut_name $pointer
+    print_menu
     user_input=0
     while [ $user_input != "q" ] && [ $user_input != "Q" ];
     do
         read -n1 -s user_input
-        if [ "$user_input" == "" ];
-        then
+        if [ "$user_input" == "" ]; then
             move_to_dir=(cd ${shortcut_location[$pointer]})
             "${move_to_dir[@]}"
             eval ${shortcut_command[$pointer]}
             cd - >/dev/null
             user_input="q"
-        elif [ $user_input == "w" ] || [ $user_input == "k" ];
-        then
+        elif [ $user_input == "w" ] || [ $user_input == "k" ]; then
             move_pointer -1 $pointer $indiv_index
-            print_menu $shortcut_name $pointer $iniv_index
-        elif [ $user_input == "s" ] || [ $user_input == "j" ];
-        then
+            print_menu
+        elif [ $user_input == "s" ] || [ $user_input == "j" ]; then
             move_pointer 1 $pointer $indiv_index
-            print_menu $shortcut_name $pointer $iniv_index
+            print_menu
+        elif [ $user_input == "h" ] || [ $user_input == "?" ]; then
+            help_f
+            echo $'\e[H\e[0J'$title
+            print_menu
         fi
     done
 }
