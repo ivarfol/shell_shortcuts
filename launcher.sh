@@ -47,7 +47,7 @@ load_arr () {
             fi
             ((index=$index+1))
         fi
-    done < launcher_shortcuts
+    done < ~/.shortcuts 
 }
 
 main () {
