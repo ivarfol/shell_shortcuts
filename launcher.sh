@@ -37,13 +37,18 @@ load_arr () {
     indiv_index=0
     while read line; do
         if [[ "$line" != \#* ]] && [[ "$line" != "" ]]; then
-            if [ $(( index % 3 )) -eq 0 ]; then
-                shortcut_name[indiv_index]="$line"
-            elif [ $(( index % 3 )) -eq 1 ]; then
-                shortcut_location[indiv_index]="${line/#~/${HOME}}"
-            elif [ $(( index % 3 )) -eq 2 ]; then
-                shortcut_command[indiv_index]="$line"
-                ((indiv_index=$indiv_index+1))
+            if [ $index -eq 0 ]; then
+                title="$line"
+                echo "$line" >> ~/sh_sh_log.txt
+            else
+                if [ $(( index % 3 )) -eq 1 ]; then
+                    shortcut_name[indiv_index]="$line"
+                elif [ $(( index % 3 )) -eq 2 ]; then
+                    shortcut_location[indiv_index]="${line/#~/${HOME}}"
+                elif [ $(( index % 3 )) -eq 0 ]; then
+                    shortcut_command[indiv_index]="$line"
+                    ((indiv_index=$indiv_index+1))
+                fi
             fi
             ((index=$index+1))
         fi
@@ -51,12 +56,9 @@ load_arr () {
 }
 
 main () {
-    echo $'\e[2J\e[HOptions:'
     pointer=0
     load_arr
-    #for ((i = 0 ; i < $indiv_index ; i++)); do
-     #   echo
-    #done
+    echo $'\e[2J\e[H'$title
     ((indiv_index=$indiv_index-1))
     print_menu $shortcut_name $pointer
     user_input=0

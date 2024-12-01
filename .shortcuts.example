@@ -3,6 +3,11 @@
 # name, path to lication where the command needs to run and command to run
 # you can leave empty lines in between the arguments
 # you can comment between the arguments
+
+# title
+Options:
+
+# option 1
 option 1
 ~
 #comment
