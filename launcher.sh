@@ -75,7 +75,7 @@ main () {
     do
         read -n1 -s user_input
         if [ "$user_input" == "" ]; then
-            move_to_dir=(cd ${shortcut_location[$pointer]})
+            move_to_dir=(cd "${shortcut_location[$pointer]}")
             "${move_to_dir[@]}"
             eval ${shortcut_command[$pointer]}
             cd - >/dev/null
