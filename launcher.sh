@@ -49,7 +49,6 @@ load_arr () {
         if [[ "$line" != \#* ]] && [[ "$line" != "" ]]; then
             if [ $index -eq 0 ]; then
                 title="$line"
-                echo "$line" >> ~/sh_sh_log.txt
             else
                 if [ $(( index % 3 )) -eq 1 ]; then
                     shortcut_name[indiv_index]="$line"
