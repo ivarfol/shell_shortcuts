@@ -40,7 +40,7 @@ load_arr () {
             if [ $(( index % 3 )) -eq 0 ]; then
                 shortcut_name[indiv_index]="$line"
             elif [ $(( index % 3 )) -eq 1 ]; then
-                shortcut_location[indiv_index]="$line"
+                shortcut_location[indiv_index]="${line/#~/${HOME}}"
             elif [ $(( index % 3 )) -eq 2 ]; then
                 shortcut_command[indiv_index]="$line"
                 ((indiv_index=$indiv_index+1))
